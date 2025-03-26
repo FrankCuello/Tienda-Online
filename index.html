@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link type="text/css" rel="stylesheet" href="style.css"/>
+  </head>
+  <body>
+    <!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda Online</title>
+    <!-- Enlaces a CSS de Bootstrap y CSS personalizado -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Iconos de Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- jsPDF para generar PDFs -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+
+
+</head>
+<body>
+<link rel="shortcut icon" href="https://img.freepik.com/vector-gratis/diseno-logotipo-tienda-ropa-diseno-plano_23-2149491783.jpg?semt=ais_hybrid" type="image/x-icon">
+    <!-- Encabezado -->
+    <header>
+        <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
+            <a class="navbar-brand" href="#">
+                <img src="https://cdn-icons-png.freepik.com/256/11181/11181797.png?semt=ais_hybrid" alt="Logo de la tienda" width="30" height="30" class="d-inline-block align-top">
+                Mi Tienda
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#inicio">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#categorias">Categorías</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-toggle="modal" data-target="#carritoModal">
+                            <i class="bi bi-cart-fill"></i> Carrito <span class="badge badge-pill badge-primary carrito-count">0</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Contenido principal -->
+    <main class="container-fluid">
+        <!-- Sección de Inicio -->
+        <section id="inicio" class="jumbotron text-center">
+            <h1 class="display-4">Bienvenido a Mi Tienda Online</h1>
+            <p class="lead">Encuentra productos increíbles a precios inmejorables.</p>
+        </section>
+
+        <!-- Sección de Búsqueda -->
+        <section id="busqueda" class="mb-4">
+            <div class="input-group">
+                <input type="text" class="form-control" id="busqueda-producto" placeholder="Buscar productos..." aria-label="Buscar productos">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="button">Buscar</button>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Sección de Categorías y Productos -->
+        <section id="categorias" class="row">
+            <h2>Categorías de Productos</h2>
+            <div id="productos-container" class="row">
+                <!-- Aquí se insertarán las tarjetas de productos dinámicamente -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer mt-auto py-3 bg-light text-center">
+        <div class="container">
+            <span class="text-muted">© 2024 Mi Tienda Online. Todos los derechos reservados.</span>
+        </div>
+    </footer>
+
+    <!-- Modales -->
+
+    <!-- Modal de Cantidad -->
+    <div class="modal fade" id="cantidadModal" tabindex="-1" role="dialog" aria-labelledby="cantidadModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="cantidadModalLabel">Seleccionar Cantidad</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <input type="number" id="producto-cantidad" class="form-control" value="1" min="1">
+                    <input type="hidden" id="producto-id-modal"> <!-- Para guardar el ID del producto -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="btn-agregar-carrito">Añadir al carrito</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal del Carrito -->
+    <div class="modal fade" id="carritoModal" tabindex="-1" role="dialog" aria-labelledby="carritoModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="carritoModalLabel">Carrito de Compras</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div id="carrito-productos-container">
+                        <!-- Aquí se listarán los productos del carrito -->
+                        <p id="carrito-vacio-mensaje" class="text-center">El carrito está vacío.</p>
+                        <ul class="list-group" id="lista-carrito-productos">
+                            <!-- Los items del carrito se agregarán aquí -->
+                        </ul>
+                    </div>
+                    <h5 id="carrito-total" class="text-right">Total: $0.00</h5>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary" id="btn-pagar" data-toggle="modal" data-target="#pagoModal">Pagar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Pago -->
+    <div class="modal fade" id="pagoModal" tabindex="-1" role="dialog" aria-labelledby="pagoModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="pagoModalLabel">Pasarela de Pago Simulada</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="formulario-pago">
+                        <div class="form-group">
+                            <label for="nombre">Nombre Completo</label>
+                            <input type="text" class="form-control" id="nombre" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="tarjeta">Número de Tarjeta</label>
+                            <input type="text" class="form-control" id="tarjeta" placeholder="**** **** **** ****" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="fecha-expiracion">Fecha de Expiración</label>
+                            <input type="text" class="form-control" id="fecha-expiracion" placeholder="MM/AA" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="cvv">CVV</label>
+                            <input type="text" class="form-control" id="cvv" placeholder="***" required>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-success" id="btn-finalizar-compra">Pagar y Generar Factura</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Scripts de Bootstrap y JavaScript personalizado -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="js/script.js"></script>
+
+</body>
+</html>
+    <script type="module" src="script.js"></script>
+  </body>
+</html>

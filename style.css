@@ -1,0 +1,109 @@
+/* styles.css */
+
+/* Estilos generales */
+body {
+    font-family: 'Arial', sans-serif;
+    padding-top: 70px; /* Espacio para el menú fijo */
+}
+
+main {
+    padding: 20px;
+}
+
+h2 {
+    margin-bottom: 20px;
+}
+
+.card {
+    margin-bottom: 20px;
+    border: none; /* Elimina el borde por defecto de las tarjetas de Bootstrap */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05); /* Sutil sombra */
+    transition: transform 0.2s ease-in-out; /* Transición suave para el hover */
+    border-radius: 10px; /* Bordes redondeados */
+    overflow: hidden; /* Asegura que las imágenes redondeadas no se desborden */
+}
+
+.card:hover {
+    transform: scale(1.02); /* Ligeramente más grande en hover */
+    box-shadow: 0 6px 12px rgba(0,0,0,0.08); /* Sombra más pronunciada en hover */
+}
+
+.card-img-top {
+    border-top-left-radius: 10px; /* Redondea la esquina superior izquierda */
+    border-top-right-radius: 10px; /* Redondea la esquina superior derecha */
+    width: 100%; /* Asegura que la imagen ocupe todo el ancho de la tarjeta */
+    height: 200px; /* Altura fija para uniformidad */
+    object-fit: cover; /* Cubre el área manteniendo la proporción */
+}
+
+
+.card-body {
+    padding: 15px;
+}
+
+.card-title {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+.card-text {
+    font-size: 0.9rem;
+    color: #6c757d; /* Color grisáceo para el precio */
+    margin-bottom: 1rem;
+}
+
+.btn-agregar-carrito {
+    background-color: #007bff; /* Azul Bootstrap */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Transición suave para el botón */
+}
+
+.btn-agregar-carrito:hover {
+    background-color: #0056b3; /* Azul más oscuro en hover */
+}
+
+/* Estilos para el footer */
+.footer {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    padding: 1rem;
+    background-color: #f8f9fa; /* Color de fondo claro */
+    border-top: 1px solid #dee2e6; /* Línea superior sutil */
+}
+
+/* Estilo para el badge del carrito */
+.carrito-count {
+    margin-left: 5px;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+    .navbar-brand {
+        font-size: 1.2rem;
+    }
+    .nav-link {
+        padding: 0.7rem 1rem;
+    }
+    .jumbotron h1 {
+        font-size: 2.5rem;
+    }
+    .jumbotron p {
+        font-size: 1.1rem;
+    }
+    #categorias h2 {
+        font-size: 1.5rem;
+    }
+    .card-title {
+        font-size: 0.9rem;
+    }
+    .card-text {
+        font-size: 0.8rem;
+    }
+}

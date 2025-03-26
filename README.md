@@ -3,7 +3,7 @@
 
 Este proyecto es un desarrollo frontend completo de una tienda online, diseñado para simular la experiencia de un ecommerce real utilizando HTML5, CSS3, JavaScript y Bootstrap.  🚀 Aunque no incluye un backend real, simula la interacción con datos de productos utilizando la API pública [FakeStore API](https://fakestoreapi.com/). 🛒 El objetivo principal es crear una interfaz de usuario atractiva, responsiva y funcional que demuestre las características esenciales de una tienda online, desde la navegación y la visualización de productos hasta la gestión del carrito y la simulación de pago con generación de factura. 📄
 
-Link de la pagina: 
+Link de la pagina: https://frankcuello.github.io/Tienda-Online/
 
 ## ✨ Características Principales
 
